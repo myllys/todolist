@@ -16,7 +16,6 @@ function App() {
     <div>
       <input type="text" onChange={inputChanged} placeholder="Description" name="description" value={todo.description}/>
       <input type="text" onChange={inputChanged} placeholder="Date" name="date" value={todo.date}/>
-      <input type="text" onChange={inputChanged} placeholder="Priority" name="priority" value={todo.priority}/>
       <button onClick={addTodo}>Add</button>
     
       <table>
