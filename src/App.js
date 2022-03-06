@@ -1,38 +1,33 @@
 import './App.css';
 import React, { useState } from 'react';
 function App() {
-    const [desc, setDesc] = useState('');
-    const [todos, setTodos] = useState([]);
+  const [todo, setTodo] = useState({description: '', date: '', priority:''});
+  const [todos, setTodos] = useState([]);
 
-    const inputChanged = (event) => {
-      setDesc(event.target.value);
-    }
+  const inputChanged = (event) => {
+    setTodo({...todo, [event.target.name]: event.target.value});
+  }
 
-    const addTodo = (event) => {
-      event.preventDefault();
-      setTodos([...todos, desc]);
-    }
+  const addTodo = (event) => {
+    setTodos([...todos, todo]);
+  }
 
   return (
-    <div className="App">
-      <form onSubmit={addTodo}>
-        <input type="text" value={desc} onChange={inputChanged}/>
-        <input type="submit" value="Add"/>
-      </form>
+    <div>
+      <input type="text" onChange={inputChanged} placeholder="Description" name="description" value={todo.description}/>
+      <input type="text" onChange={inputChanged} placeholder="Date" name="date" value={todo.date}/>
+      <input type="text" onChange={inputChanged} placeholder="Priority" name="priority" value={todo.priority}/>
+      <button onClick={addTodo}>Add</button>
+    
       <table>
         <tbody>
-          {
-          
-          todos.map((todo, index) =>
-          <tr key={index}>
-            <td>{todo}</td>
-            </tr> 
-          )
-}
+        {
+          todos.map((todo, index) => <tr key={index}><td>{todo.description}</td><td>{todo.date}</td><td>{todo.priority}</td></tr>)
+        }
         </tbody>
-      </table>
+      </table>   
     </div>
   );
-}
+};
 
 export default App;
